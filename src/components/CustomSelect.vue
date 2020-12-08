@@ -34,6 +34,7 @@ export default {
     selectOption(option) {
       this.defaultOption = option.label
       this.opened = false
+      //
     }
   }
 }
