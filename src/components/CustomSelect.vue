@@ -115,7 +115,7 @@ export default {
       justify-content: space-evenly;
       max-width: 150px;
       min-width: 70px;
-      width: 100px;
+      width: 150px;
       padding: 5px;
     }
     .default-option {

@@ -34,5 +34,8 @@ export default {
 </script>
 
 <style scoped>
-
+label {
+  font-size: 15px;
+  font-weight: 400;
+}
 </style>

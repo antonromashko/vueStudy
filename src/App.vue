@@ -54,7 +54,7 @@ export default {
           { name: 'lastName', label: 'Last name', value: '' },
           { name: 'email', label: 'Email', value: '' },
           { name: 'language', label: 'Language', value: '' },
-          { name: 'gender', label: ['male', 'female'], value: '' },
+          { name: 'gender', label: 'Gender', value: '' },
           { name: 'accept', label: 'Do you agree with terms?', value: '' }
         ],
       optionsList: [
@@ -91,6 +91,7 @@ export default {
 
 <style lang="scss" scoped>
   #app {
+    text-align: center;
     width: 100%;
     height: 100%;
     position: absolute;

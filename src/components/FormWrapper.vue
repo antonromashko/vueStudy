@@ -1,16 +1,18 @@
 <template>
-  <form class="form">
+  <div>
+     <form class="form" v-if="!sentFormData">
     <header>
       <slot name="title"></slot>
     </header>
-    <template v-if="!sentFormData">
+    <template>
       <slot v-for="item in formData" :name="item.name" :[item.name]="item"></slot>
-    </template>
-    <template v-else>
-      {{ sentFormMessage }}
     </template>
     <button type="button" :disabled="isPending" @click="sendForm">{{ currentButtonName }}</button>
   </form>
+  <template v-else>
+      {{ sentFormMessage }}
+  </template>
+  </div>
 </template>
 
 <script>
@@ -69,6 +71,11 @@ export default {
 
 <style lang="scss" scoped>
 form {
+  button {
+    width: 200px;
+    height: 40px;
+    background: cadetblue;
+  }
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -83,15 +90,26 @@ form {
       label {
         width: 40%;
         padding: 10px;
-    }
+      }
+      input {
+        border-style: solid;
+        border-color: rgba(3, 3, 3, 0.12);
+        border-radius: 3px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        max-width: 150px;
+        width: 150px;
+        padding: 5px;
+      }
     }
     div {
       padding: 10px;
     }
-  }
-  .gender {
-    align-items: flex-end;
-    justify-content: center;
   }
 }
 </style>

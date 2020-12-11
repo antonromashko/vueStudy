@@ -1,14 +1,17 @@
 <template>
-  <div :class="name">
-    <label v-for="(val, idx) of label" :key="idx">
+  <div class="gender">
+    <label for="radio">{{ label }}</label>
+    <div v-for="(val, idx) of data" :key="idx" class="radio">
       <input
           v-model="radioValue"
+          id="radio"
           type="radio"
           :value="val"
           @change="$emit('change', name, radioValue)"
       >
       <span>{{ val }}</span>
-    </label>
+    </div>
+
   </div>
 </template>
 
@@ -17,12 +20,14 @@ export default {
   name: "FormRadio",
   data() {
     return {
-      radioValue: ''
+      radioValue: '',
+      data: ['male', 'female']
     }
   },
   props: {
+
     label: {
-      type: Array,
+      type: String,
       required: true
     },
     name: {
@@ -33,6 +38,21 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss">
+  .gender {
+    display: flex;
+    align-items: center;
+    label {
+      font-size: 20px;
+      font-weight: 500;
+    }
+    .radio {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      input {
+        width: fit-content;
+      }
+    }
+  }
 </style>
