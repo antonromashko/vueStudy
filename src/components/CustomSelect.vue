@@ -1,19 +1,22 @@
 <template>
-  <div class="custom-select">
-    <div
+  <div class="custom-select" :class="name">
+    <label>{{ label }}</label>
+    <div>
+      <div
         class="option default-option"
         :style="styleAdapter"
         @click="openSelect">
       {{ selected }}
-      <span v-if="selectedOption" @click.stop="reset" class="reset">&#10005;</span>
+      <span v-if="isSelected" @click.stop="reset" class="reset">&#10005;</span>
       <span v-else>&#9662;</span>
     </div>
-    <template v-if="opened">
+    <div v-if="opened" style="position: fixed; background-color: white">
       <div v-for="(option, idx) of optionsList" :key="idx" class="option" @click="selectOption(option)">
-        <span v-if="selectedOption === option.label">&#10003;</span>
+        <span v-if="selectedOption.value === option.label">&#10003;</span>
         {{ option.label }}
       </div>
-    </template>
+    </div>
+    </div>
   </div>
 </template>
 
@@ -21,6 +24,13 @@
 export default {
   name: "CustomSelect",
   props: {
+    name: {
+      type: String,
+      required: true
+    },
+    label: {
+      required: true
+    },
     optionsList: {
       required: true,
       type: Array
@@ -30,7 +40,7 @@ export default {
       default: 'choose'
     },
     selectedOption: {
-      type: null,
+      type: Object,
       required: true
     }
   },
@@ -40,11 +50,14 @@ export default {
     }
   },
   computed: {
+    isSelected() {
+      return Object.keys(this.selectedOption).length > 0
+    },
     selected() {
-      return this.selectedOption ? this.selectedOption : this.defaultOption
+      return this.isSelected ? this.selectedOption.value : this.defaultOption
     },
     styleAdapter() {
-      if (this.selectedOption) {
+      if (this.isSelected) {
         return {
           color: 'black'
         }
@@ -59,12 +72,18 @@ export default {
     openSelect() {
       this.opened = !this.opened
     },
+    setOption(option) {
+      return {
+        name: this.name,
+        value: option.label ? option.label : null
+      }
+    },
     selectOption(option) {
       this.opened = false
-      this.$emit('update:selectedOption', option.label ? option.label : null)
+      this.$emit('update:selectedOption', this.setOption(option))
     },
     reset() {
-      this.$emit('update:selectedOption', null)
+      this.$emit('update:selectedOption', {})
     }
   }
 }
@@ -73,14 +92,15 @@ export default {
 <style lang="scss" scoped>
   .custom-select {
     display: flex;
-    flex-direction: column;
-    width: fit-content;
-    padding: 10px;
+    flex-direction: row;
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
+    label {
+      padding: 10px;
+      width: 40%;
+    }
     .option {
-      padding: 5px;
       position: relative;
       border-width: 0 1px 1px 1px;
       border-style: solid;
@@ -96,6 +116,7 @@ export default {
       max-width: 150px;
       min-width: 70px;
       width: 100px;
+      padding: 5px;
     }
     .default-option {
       border-width: 1px;

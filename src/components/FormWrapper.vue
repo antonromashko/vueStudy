@@ -1,0 +1,97 @@
+<template>
+  <form class="form">
+    <header>
+      <slot name="title"></slot>
+    </header>
+    <template v-if="!sentFormData">
+      <slot v-for="item in formData" :name="item.name" :[item.name]="item"></slot>
+    </template>
+    <template v-else>
+      {{ sentFormMessage }}
+    </template>
+    <button type="button" :disabled="isPending" @click="sendForm">{{ currentButtonName }}</button>
+  </form>
+</template>
+
+<script>
+export default {
+  name: "FormWrapper",
+  data() {
+    return {
+      pendingButton: 'Sending...',
+      isPending: false,
+      sentFormData: false
+    }
+  },
+  props: {
+    buttonName: {
+      default: 'SAVE'
+    },
+    formData: {
+      type: Array,
+      required: true
+    }
+  },
+  computed: {
+    currentButtonName() {
+      return this.isPending ? this.pendingButton : this.buttonName
+    },
+    validateForm() {
+      for (const item of this.formData) {
+        if((item.name === 'email' && !item.value) || (item.name === 'accept' && !item.value)) {
+          return false
+        }
+      }
+      return true
+    },
+    sentFormMessage() {
+      if (this.validateForm) {
+        return 'Successful'
+      }
+      return 'Error'
+    }
+  },
+  methods: {
+    async sleep(seconds) {
+      await new Promise(r => setTimeout(r, seconds * 1000));
+    },
+    async sendForm() {
+      this.isPending = true;
+      await this.sleep(3);
+      this.isPending = false;
+      this.sentFormData = true;
+      //
+      this.$emit('send-form')
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  div,
+  header {
+    width: 500px;
+    align-items: center;
+    display: flex;
+    justify-content: left;
+    ::v-deep{
+      label {
+        width: 40%;
+        padding: 10px;
+    }
+    }
+    div {
+      padding: 10px;
+    }
+  }
+  .gender {
+    align-items: flex-end;
+    justify-content: center;
+  }
+}
+</style>
