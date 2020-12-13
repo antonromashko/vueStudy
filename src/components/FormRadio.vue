@@ -45,6 +45,7 @@ export default {
     label {
       font-size: 20px;
       font-weight: 500;
+      display: flex;
     }
     .radio {
       display: flex;

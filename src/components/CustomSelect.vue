@@ -97,6 +97,7 @@ export default {
     font-weight: 500;
     cursor: pointer;
     label {
+      display: flex;
       padding: 10px;
       width: 40%;
     }

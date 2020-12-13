@@ -28,6 +28,7 @@
           <FormCheckBox :name="accept.name" :label="accept.label" @change="setData" />
         </template>
       </form-wrapper>
+    <AfterLoop v-if="false"></AfterLoop>
   </div>
 </template>
 
@@ -37,6 +38,7 @@ import FormWrapper from '@/components/FormWrapper.vue'
 import FormInput from '@/components/FormInput.vue'
 import FormCheckBox from '@/components/FormCheckBox.vue'
 import FormRadio from '@/components/FormRadio.vue'
+import AfterLoop from "@/components/homework4/AfterLoop";
 
 export default {
   name: 'App',
@@ -45,7 +47,8 @@ export default {
     'form-wrapper': FormWrapper,
     FormInput,
     FormCheckBox,
-    FormRadio
+    FormRadio,
+    AfterLoop
   },
   data() {
     return {
