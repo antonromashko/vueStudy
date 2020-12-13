@@ -5,6 +5,7 @@
         :key="idx"
         type="button"
         :label="value"
+        :active-button="tabs[currentTab]"
         @handler="changeTab(key)"
     />
     <transition name="content" mode="out-in" appear>
@@ -20,6 +21,7 @@ import HomeWork3 from '@/components/homework3/HomeWork3.vue';
 import AfterLoop from "@/components/homework4/AfterLoop.vue";
 import ImgPreload from "@/components/homework4/ImgPreload.vue";
 import ButtonForGroup from "@/components/ButtonForGroup.vue";
+import Slider from "@/components/homework4/Slider.vue";
 
 export default {
   name: 'App',
@@ -27,15 +29,17 @@ export default {
     AfterLoop,
     ImgPreload,
     HomeWork3,
-    ButtonForGroup
+    ButtonForGroup,
+    Slider
   },
   data() {
     return {
       currentTab: 'HomeWork3',
       tabs: {
         'HomeWork3': 'hw3',
-        AfterLoop: 'hw4 - task1',
-        ImgPreload: 'hw4 - task2'
+        AfterLoop: 'hw4:1',
+        ImgPreload: 'hw4:2',
+        Slider: 'hw4:3'
       }
     }
   },

@@ -31,5 +31,10 @@ export default {
 </script>
 
 <style scoped>
-
+ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
 </style>

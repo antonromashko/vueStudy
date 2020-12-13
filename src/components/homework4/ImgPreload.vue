@@ -1,7 +1,6 @@
 <template>
   <div>
     <img alt="" v-img-preload="imgUrl" src="">
-    <img alt="" v-img-preload="imgUrlError" src="">
   </div>
 </template>
 
@@ -28,8 +27,9 @@ export default {
     align-items: center;
     justify-content: center;
     img {
-      width: 100px;
-      height: 100px;
+      margin: 15px;
+      width: 200px;
+      height: 200px;
     }
   }
 </style>

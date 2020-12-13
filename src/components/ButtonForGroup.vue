@@ -1,5 +1,5 @@
 <template>
-  <button :type="type" @click="handler(callback)">{{ label }}</button>
+  <button :type="type" :class="{ active: label === activeButton }" @click="handler(callback)">{{ label }}</button>
 </template>
 
 <script>
@@ -15,3 +15,19 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+  button {
+    padding: 10px;
+    height: 40px;
+    background-color: #fff;
+    color: #2d313b;
+    text-align: center;
+    cursor: pointer;
+    outline-width: 0;
+    border: 1px solid #ebebeb;
+  }
+  .active {
+    background-color: #ebebeb;
+    box-shadow: inset 0 1px 3px 0 #7e7e7e;
+  }
+</style>

@@ -7,6 +7,9 @@ export default {
     label: {
       type: String,
       required: true
+    },
+    activeButton: {
+      type: String
     }
   },
   methods: {
