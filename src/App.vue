@@ -1,92 +1,52 @@
 <template>
   <div id="app">
-      <form-wrapper :formData="formData" @send-form="sendForm">
-        <template #title>
-          <div>Title</div>
-        </template>
-        <template #firstName="{ firstName }">
-          <FormInput :name="firstName.name" :label="firstName.label" @input="setData" />
-        </template>
-        <template #lastName="{ lastName }">
-          <FormInput :name="lastName.name" :label="lastName.label" @input="setData" />
-        </template>
-        <template #email="{ email }">
-          <FormInput :name="email.name" :label="email.label" @input="setData" />
-        </template>
-        <template #language="{ language }">
-          <CustomSelect
-              :name="language.name"
-              :label="language.label"
-              :options-list="optionsList"
-              :selected-option.sync="selected"
-          />
-        </template>
-        <template #gender="{ gender }">
-          <FormRadio :name="gender.name" :label="gender.label" @change="setData" />
-        </template>
-        <template #accept="{ accept }">
-          <FormCheckBox :name="accept.name" :label="accept.label" @change="setData" />
-        </template>
-      </form-wrapper>
-    <AfterLoop v-if="false"></AfterLoop>
+    <ButtonForGroup
+        v-for="(value, key, idx) in tabs"
+        :key="idx"
+        type="button"
+        :label="value"
+        :active-button="tabs[currentTab]"
+        @handler="changeTab(key)"
+    />
+    <transition name="content" mode="out-in" appear>
+      <keep-alive>
+        <component :is="currentTab"></component>
+      </keep-alive>
+    </transition>
   </div>
 </template>
 
 <script>
-import CustomSelect from '@/components/CustomSelect.vue'
-import FormWrapper from '@/components/FormWrapper.vue'
-import FormInput from '@/components/FormInput.vue'
-import FormCheckBox from '@/components/FormCheckBox.vue'
-import FormRadio from '@/components/FormRadio.vue'
-import AfterLoop from "@/components/homework4/AfterLoop";
+import HomeWork3 from '@/components/homework3/HomeWork3.vue';
+import AfterLoop from "@/components/homework4/AfterLoop.vue";
+import ImgPreload from "@/components/homework4/ImgPreload.vue";
+import ButtonForGroup from "@/components/ButtonForGroup.vue";
+import Slider from "@/components/homework4/Slider.vue";
 
 export default {
   name: 'App',
   components: {
-    CustomSelect,
-    'form-wrapper': FormWrapper,
-    FormInput,
-    FormCheckBox,
-    FormRadio,
-    AfterLoop
+    AfterLoop,
+    ImgPreload,
+    HomeWork3,
+    ButtonForGroup,
+    Slider
   },
   data() {
     return {
-      formData: [
-          { name: 'firstName', label: 'First name', value: '' },
-          { name: 'lastName', label: 'Last name', value: '' },
-          { name: 'email', label: 'Email', value: '' },
-          { name: 'language', label: 'Language', value: '' },
-          { name: 'gender', label: 'Gender', value: '' },
-          { name: 'accept', label: 'Do you agree with terms?', value: '' }
-        ],
-      optionsList: [
-        { label: 'ru', id: '1' },
-        { label: 'en', id: '2' },
-        { label: 'ua', id: '3' }
-      ],
-      selected: {}
-    }
-  },
-  watch: {
-    selected: {
-      deep: true,
-      handler() {
-        this.setData(this.selected.name, this.selected.value)
+      currentTab: 'HomeWork3',
+      tabs: {
+        'HomeWork3': 'hw3',
+        AfterLoop: 'hw4:1',
+        ImgPreload: 'hw4:2',
+        Slider: 'hw4:3'
       }
     }
   },
   methods: {
-    async sendForm() {
-      console.group('Your form data:')
-      for (const item of this.formData) {
-        console.log(item.name + ': ' + item.value)
-      }
-      console.groupEnd()
-    },
-    setData(name, value) {
-      console.log(name, value);
-      this.formData.filter(item => item.name === name)[0].value = value
+    changeTab(key) {
+      this.currentTab = key;
+      document.title = this.tabs[key]
     }
   }
 }
@@ -98,5 +58,14 @@ export default {
     width: 100%;
     height: 100%;
     position: absolute;
+    .content {
+      &-enter-active, &-leave-active {
+        transition: .3s;
+      }
+      &-enter, &-leave-to {
+        opacity: 0;
+        transform: translateX(-30%);
+      }
+    }
   }
 </style>
