@@ -12,12 +12,12 @@ function imgPreload(el, binding) {
     const img = new Image();
     el.src = loading
 
-    const observer = new IntersectionObserver(() => img.src = binding.value, options);
+    const observer = new IntersectionObserver(() => {
+      img.src = binding.value;
+      el.src = img.src;
+    }, options);
     observer.observe(img);
 
-    img.onload = () => {
-      el.src = img.src
-    }
     img.onerror = () => {
       el.src = error
     };
