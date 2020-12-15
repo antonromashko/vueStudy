@@ -15,6 +15,7 @@ export default {
   methods: {
     handler(callback) {
       console.log('[mixin]:', 'this is method from mixin');
+      document.title = this.label
       callback()
       this.$emit('handler')
     }

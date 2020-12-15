@@ -46,7 +46,6 @@ export default {
   methods: {
     changeTab(key) {
       this.currentTab = key;
-      document.title = this.tabs[key]
     }
   }
 }
