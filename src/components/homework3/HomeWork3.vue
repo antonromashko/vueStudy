@@ -17,7 +17,7 @@
             :name="language.name"
             :label="language.label"
             :options-list="optionsList"
-            :selected-option.sync="selected"
+            :selected-option.sync="selectedOption"
         />
       </template>
       <template #gender="{ gender }">
@@ -60,14 +60,16 @@ export default {
         { label: 'en', id: '2' },
         { label: 'ua', id: '3' }
       ],
-      selected: {}
+      selectedOption: {}
     }
   },
   watch: {
-    selected: {
+    selectedOption: {
       deep: true,
       handler() {
-        this.setData(this.selected.name, this.selected.value)
+        if (Object.keys(this.selectedOption).length > 0) {
+          this.setData(this.selectedOption.name, this.selectedOption.value)
+        }
       }
     }
   },
