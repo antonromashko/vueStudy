@@ -1,7 +1,7 @@
 <template>
 <div>
   <ul>
-    <li v-after-loop="someMethod" v-for="(item, idx) in data" :key="idx">{{ item }}</li>
+    <li v-after-loop:[data]="someMethod" v-for="(item, idx) in data" :key="idx">{{ item }}</li>
   </ul>
 </div>
 </template>
@@ -17,8 +17,10 @@ export default {
   },
   directives: {
     afterLoop: {
-      inserted: function(el,binding) {
-        binding.value(el)
+      inserted: function(el,binding, vnode) {
+        if (vnode.key === binding.arg.length - 1) {
+          binding.value(el)
+        }
       }
     }
   },
