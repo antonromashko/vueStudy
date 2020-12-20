@@ -1,17 +1,17 @@
 <template>
   <div>
-     <form class="form" v-if="!sentFormData">
-    <header>
-      <slot name="title"></slot>
-    </header>
-    <template>
-      <slot v-for="item in formData" :name="item.name" :[item.name]="item"></slot>
-    </template>
-    <button type="button" :disabled="isPending" @click="sendForm">{{ currentButtonName }}</button>
-  </form>
-  <template v-else>
+    <form class="form" v-if="!sentFormData">
+      <header>
+        <slot name="title"></slot>
+      </header>
+      <template>
+        <slot v-for="item in formData" :name="item.name" :[item.name]="item"></slot>
+      </template>
+      <button type="button" :disabled="isPending" @click="sendForm">{{ currentButtonName }}</button>
+    </form>
+    <template v-else>
       {{ sentFormMessage }}
-  </template>
+    </template>
   </div>
 </template>
 
