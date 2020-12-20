@@ -22,7 +22,8 @@ import AfterLoop from "@/components/homework4/AfterLoop.vue";
 import ImgPreload from "@/components/homework4/ImgPreload.vue";
 import ButtonForGroup from "@/components/ButtonForGroup.vue";
 import Slider from "@/components/homework4/Slider.vue";
-import TaskForm from "@/components/homework5/task_1/TaskForm.vue";
+import Task1Form from "@/components/homework5/task_1/Task1Form.vue";
+import Task2Form from "@/components/homework5/task_2/Task2Form.vue";
 
 export default {
   name: 'App',
@@ -32,7 +33,8 @@ export default {
     HomeWork3,
     ButtonForGroup,
     Slider,
-    TaskForm
+    Task1Form,
+    Task2Form
   },
   data() {
     return {
@@ -42,7 +44,8 @@ export default {
         AfterLoop: 'hw4:1',
         ImgPreload: 'hw4:2',
         Slider: 'hw4:3',
-        TaskForm: 'hw5:1'
+        Task1Form: 'hw5:1',
+        Task2Form: 'hw5:2'
       }
     }
   },

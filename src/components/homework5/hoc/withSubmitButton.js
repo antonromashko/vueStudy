@@ -15,7 +15,7 @@ export const withSubmitButton = Btn => {
         Btn,
         {
           ...context.data,
-          nativeOn: {
+          on: {
             click: () => {
               console.log('[fieldOne]', context.props.fieldOne);
               console.log('[fieldTwo]', context.props.fieldTwo);

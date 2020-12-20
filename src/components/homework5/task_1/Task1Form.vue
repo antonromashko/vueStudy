@@ -13,7 +13,7 @@ import { withSubmitButton } from "@/components/homework5/hoc/withSubmitButton.js
 const HocSubmit = withSubmitButton(SubmitButton);
 
 export default {
-  name: "TaskForm",
+  name: "Task1Form",
   components: {
     HocSubmit
   },
