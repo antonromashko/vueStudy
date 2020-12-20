@@ -1,27 +1,26 @@
 <template>
-  <FormWrapper :form-data="formData">
+  <FormWrapper :form-data="formData" :enable-save-button="false">
     <template #title>
-    <span class="counter">{{ counter }}</span><span>- fields changed</span>
-    <button v-if="counter" type="button" class="clear" @click="clearForm">CLEAR</button>
+      <span class="counter">{{ counter }}</span><span>- fields changed</span>
+      <button v-if="counter" type="button" class="clear" @click="clearForm">CLEAR</button>
       <button type="button" class="more-filters" @click="showMoreFilters">MORE</button>
     </template>
     <template v-for="(item, idx) in formData" #[item.name]="props">
       <FormInput
-        v-if="item['isVisible']"
-        v-model="item.value"
-        :name="item.name"
-        :label="item.label"
-        :key="idx"
-        :value="props"
+          v-if="item['isVisible']"
+          v-model="item.value"
+          :name="item.name"
+          :label="item.label"
+          :key="idx"
+          :value="props"
       />
     </template>
   </FormWrapper>
-
 </template>
 <script>
 import FormWrapper from "@/components/homework3/FormWrapper.vue";
 import FormInput from "@/components/homework3/FormInput.vue";
-import { data } from '@/data/formData.js';
+import {data} from '@/data/formData.js';
 
 export default {
   name: "Task2Form",
@@ -80,7 +79,11 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style>
+span,
+button {
+  margin: 5px;
+}
 .counter {
   padding: 10px;
   margin: 5px;
@@ -89,6 +92,10 @@ export default {
 }
 .clear {
   background-color: yellow !important;
+  width: 70px !important;
+}
+.more-filters {
+  background-color: darkgrey !important;
   width: 70px !important;
 }
 </style>

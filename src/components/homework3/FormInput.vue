@@ -1,8 +1,11 @@
 <template>
-  <div>
-  <label for="input">{{ label }}</label>
-  <input id="input" type="text" :value="value" @input="$emit('input', $event.target.value, name)">
-  </div>
+  <transition name="formTransition" appear>
+    <div>
+      <label for="input">{{ label }}</label>
+      <input id="input" type="text" :value="value" @input="$emit('input', $event.target.value, name)">
+    </div>
+  </transition>
+
 </template>
 
 <script>
@@ -27,6 +30,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.formTransition {
+  width: 100%;
+  &-leave-active,
+  &-enter-active {
+    transition: opacity .8s;
+  }
+  &-enter,
+  &-leave-to{
+    opacity: 0;
+  }
+}
   label {
     display: flex;
     padding: 10px;

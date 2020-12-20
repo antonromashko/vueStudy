@@ -7,7 +7,7 @@
       <template>
         <slot v-for="item in formData" :name="item.name" :[item.name]="item"></slot>
       </template>
-      <button type="button" :disabled="isPending" @click="sendForm">{{ currentButtonName }}</button>
+      <button v-if="enableSaveButton" type="button" :disabled="isPending" @click="sendForm">{{ currentButtonName }}</button>
     </form>
     <template v-else>
       {{ sentFormMessage }}
@@ -32,6 +32,10 @@ export default {
     formData: {
       type: Array,
       required: true
+    },
+    enableSaveButton: {
+      type: Boolean,
+      default: true
     }
   },
   computed: {
