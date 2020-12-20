@@ -1,18 +1,13 @@
 <template>
   <div>
   <label for="input">{{ label }}</label>
-  <input v-model="inputValue" id="input" type="text" @input="$emit('input', name, inputValue)">
+  <input id="input" type="text" :value="value" @input="$emit('input', $event.target.value, name)">
   </div>
 </template>
 
 <script>
 export default {
   name: "FormInput",
-  data() {
-    return {
-      inputValue: ''
-    }
-  },
   props: {
     label: {
       type: String,
@@ -21,6 +16,11 @@ export default {
     name: {
       type: String,
       required: true
+    },
+    value: {
+      value: {
+        required: true
+      }
     }
   }
 }

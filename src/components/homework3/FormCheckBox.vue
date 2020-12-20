@@ -7,7 +7,7 @@
         type="checkbox"
         id="accept"
         :class="name"
-        @change="$emit('change', name, accepted)"
+        @change="$emit('change', accepted, name)"
     >
     </div>
 </template>

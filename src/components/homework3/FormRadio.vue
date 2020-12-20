@@ -7,7 +7,7 @@
           id="radio"
           type="radio"
           :value="val"
-          @change="$emit('change', name, radioValue)"
+          @change="$emit('change', radioValue, name)"
       >
       <span>{{ val }}</span>
     </div>

@@ -1,31 +1,40 @@
 <template>
 <form-wrapper :formData="formData" @send-form="sendForm">
-      <template #title>
-        <div>title</div>
-      </template>
-      <template #firstName="{ firstName }">
-        <FormInput :name="firstName.name" :label="firstName.label" @input="setData" />
-      </template>
-      <template #lastName="{ lastName }">
-        <FormInput :name="lastName.name" :label="lastName.label" @input="setData" />
-      </template>
-      <template #email="{ email }">
-        <FormInput :name="email.name" :label="email.label" @input="setData" />
-      </template>
-      <template #language="{ language }">
-        <CustomSelect
-            :name="language.name"
-            :label="language.label"
-            :options-list="optionsList"
-            :selected-option.sync="selectedOption"
-        />
-      </template>
-      <template #gender="{ gender }">
-        <FormRadio :name="gender.name" :label="gender.label" @change="setData" />
-      </template>
-      <template #accept="{ accept }">
-        <FormCheckBox :name="accept.name" :label="accept.label" @change="setData" />
-      </template>
+  <template #title>
+    <div>title</div>
+  </template>
+  <template #firstName="{ firstName }">
+    <FormInput
+        v-model="firstName.value"
+        :name="firstName.name"
+        :label="firstName.label"/>
+  </template>
+  <template #lastName="{ lastName }">
+    <FormInput
+        v-model="lastName.value"
+        :name="lastName.name"
+        :label="lastName.label"/>
+  </template>
+  <template #email="{ email }">
+    <FormInput
+        v-model="email.value"
+        :name="email.name"
+        :label="email.label"/>
+  </template>
+  <template #language="{ language }">
+    <CustomSelect
+        :name="language.name"
+        :label="language.label"
+        :options-list="optionsList"
+        :selected-option.sync="selectedOption"
+    />
+  </template>
+  <template #gender="{ gender }">
+    <FormRadio :name="gender.name" :label="gender.label" @change="setData" />
+  </template>
+  <template #accept="{ accept }">
+    <FormCheckBox :name="accept.name" :label="accept.label" @change="setData" />
+  </template>
 </form-wrapper>
 </template>
 
@@ -68,7 +77,7 @@ export default {
       deep: true,
       handler() {
         if (Object.keys(this.selectedOption).length > 0) {
-          this.setData(this.selectedOption.name, this.selectedOption.value)
+          this.setData(this.selectedOption.value, this.selectedOption.name)
         }
       }
     }
@@ -81,7 +90,7 @@ export default {
       }
       console.groupEnd()
     },
-    setData(name, value) {
+    setData(value, name) {
       console.log(name, value);
       this.formData.filter(item => item.name === name)[0].value = value
     }
