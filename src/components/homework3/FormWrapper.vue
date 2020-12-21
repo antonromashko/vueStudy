@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form class="form" v-if="!sentFormData">
+    <form class="form" v-if="!sentFormData" :style="adaptStyle[currentMode.mode]">
       <header>
         <slot name="title"></slot>
       </header>
@@ -18,6 +18,14 @@
 <script>
 export default {
   name: "FormWrapper",
+  inject: {
+    adaptStyle: {
+      default: {}
+    },
+    currentMode: {
+      default: {}
+    }
+  },
   data() {
     return {
       pendingButton: 'Sending...',

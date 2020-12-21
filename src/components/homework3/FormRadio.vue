@@ -11,7 +11,6 @@
       >
       <span>{{ val }}</span>
     </div>
-
   </div>
 </template>
 

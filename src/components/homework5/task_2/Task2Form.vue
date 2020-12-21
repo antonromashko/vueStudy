@@ -1,32 +1,36 @@
 <template>
-  <FormWrapper :form-data="formData" :enable-save-button="false">
-    <template #title>
-      <span class="counter">{{ counter }}</span><span>- fields changed</span>
-      <button v-if="counter" type="button" class="clear" @click="clearForm">CLEAR</button>
-      <button type="button" class="more-filters" @click="showMoreFilters">MORE</button>
-    </template>
-    <template v-for="(item, idx) in formData" #[item.name]="props">
-      <FormInput
-          v-if="item['isVisible']"
-          v-model="item.value"
-          :name="item.name"
-          :label="item.label"
-          :key="idx"
-          :value="props"
-      />
-    </template>
-  </FormWrapper>
+  <FormTheme>
+    <FormWrapper :form-data="formData" :enable-save-button="false">
+      <template #title>
+        <span class="counter">{{ counter }}</span><span>- fields changed</span>
+        <button v-if="counter" type="button" class="clear" @click="clearForm">CLEAR</button>
+        <button type="button" class="more-filters" @click="showMoreFilters">MORE</button>
+      </template>
+      <template v-for="(item, idx) in formData" #[item.name]="props">
+        <FormInput
+            v-if="item['isVisible']"
+            v-model="item.value"
+            :name="item.name"
+            :label="item.label"
+            :key="idx"
+            :value="props"
+        />
+      </template>
+    </FormWrapper>
+  </FormTheme>
 </template>
 <script>
 import FormWrapper from "@/components/homework3/FormWrapper.vue";
 import FormInput from "@/components/homework3/FormInput.vue";
-import {data} from '@/data/formData.js';
+import { data } from '@/data/formData.js';
+import FormTheme from "@/components/homework5/task_3/FormTheme";
 
 export default {
   name: "Task2Form",
   components: {
     FormWrapper,
-    FormInput
+    FormInput,
+    FormTheme
   },
   data() {
     return {

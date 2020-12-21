@@ -1,8 +1,8 @@
 <template>
   <transition name="formTransition" appear>
     <div>
-      <label for="input">{{ label }}</label>
-      <input id="input" type="text" :value="value" @input="$emit('input', $event.target.value, name)">
+      <label>{{ label }}</label>
+      <input type="text" :value="value" @input="$emit('input', $event.target.value, name)">
     </div>
   </transition>
 
