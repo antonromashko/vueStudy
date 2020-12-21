@@ -1,7 +1,7 @@
 <template>
   <div>
     <transition-group :name="animationAdapter" appear>
-      <div v-for="(img, idx) in images" :key="idx" v-show="idx === currentImage">
+      <div v-for="(img, idx) in images" :key="img" v-show="idx === currentImage">
         <img alt="" :src="img">
       </div>
     </transition-group>

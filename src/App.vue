@@ -24,6 +24,7 @@ import ButtonForGroup from "@/components/ButtonForGroup.vue";
 import Slider from "@/components/homework4/Slider.vue";
 import Task1Form from "@/components/homework5/task_1/Task1Form.vue";
 import Task2Form from "@/components/homework5/task_2/Task2Form.vue";
+import Hw5Task4 from "@/components/homework5/task_4/Hw5Task4.vue";
 
 export default {
   name: 'App',
@@ -34,7 +35,8 @@ export default {
     ButtonForGroup,
     Slider,
     Task1Form,
-    Task2Form
+    Task2Form,
+    Hw5Task4
   },
   data() {
     return {
@@ -45,7 +47,8 @@ export default {
         ImgPreload: 'hw4:2',
         Slider: 'hw4:3',
         Task1Form: 'hw5:1',
-        Task2Form: 'hw5:2'
+        Task2Form: 'hw5:2-3',
+        Hw5Task4: 'hw5:4'
       }
     }
   },
