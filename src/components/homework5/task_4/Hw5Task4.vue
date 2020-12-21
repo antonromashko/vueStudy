@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Modal :show-modal="showModal" :anime="currentAnime"/>
+    <Modal :show-modal="showModal" :anime="currentAnime" @close="close"/>
     <div v-if="isLoaded">
       <Anime v-for="(item, idx) in animeTop" :anime="item" :key="idx" @click="onShowModal(item)"></Anime>
     </div>
@@ -37,10 +37,10 @@ export default {
     onShowModal(val) {
       this.showModal = true;
       this.currentAnime = val;
+    },
+    close() {
+      this.showModal = false;
     }
-  },
-  async mounted() {
-    console.log(this.animeTop)
   }
 }
 </script>

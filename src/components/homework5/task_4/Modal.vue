@@ -1,8 +1,8 @@
 <template>
-<div class="modal" :class="{'modal__visible': showModal}" @click.self="showModal = !showModal">
+<div class="modal" :class="{'modal__visible': showModal}" @click.self="$emit('close')">
         <div v-if="showModal" class="modal-content">
             <div class="header">
-                <span class="close" @click="showModal = !showModal">&times;</span>
+                <span class="close" @click="$emit('close')">&times;</span>
             </div>
             <img :src="anime.image_url" alt="">
             <ul>
