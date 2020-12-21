@@ -1,6 +1,6 @@
 <template>
 <div class="modal" :class="{'modal__visible': showModal}" @click.self="showModal = !showModal">
-        <div class="modal-content">
+        <div v-if="showModal" class="modal-content">
             <div class="header">
                 <span class="close" @click="showModal = !showModal">&times;</span>
             </div>
